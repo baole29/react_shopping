@@ -29,8 +29,29 @@ class RevenueStatistical extends Component {
     };
   }
 
-  handleChange = (e) => {
-    console.log(e);
+  handleChange = (data,e) => {
+    console.log(data);
+    const dataC = {
+      labels: Array.from(
+        [...Array(30).keys()],
+        (x) => `day ${x + 1}`
+      ),
+      datasets: [
+        {
+          label: "Revenue (milions dollard)",
+          backgroundColor: Array.from(
+            [...Array(30).keys()],
+            (x) => "rgb(60, 152, 214)"
+          ),
+          data: Array.from([...Array(30).keys()], (x) =>
+          Math.floor(Math.random() * 1000) + 300)
+        },
+      ],
+    }
+
+    this.setState({
+      dataChart: dataC
+    })
   };
 
   render() {
@@ -48,7 +69,7 @@ class RevenueStatistical extends Component {
           <div className="w-[100%] h-[500px] col-span-4 row-span-2 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
             <div className="relative w-40">
               <input
-                onChange={this.handleChange(this.state.dataChart)}
+                onChange={ (e) => this.handleChange( this.state.dataChart,e)}
                 ref={this.state.dateRef}
                 type="month"
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"

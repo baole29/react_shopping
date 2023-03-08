@@ -17,7 +17,6 @@ class Dashboard extends Component {
   }
 
   render() {
-    console.log(this.context[0]);
     return (
       <div>
         <RevenueStatistical datas = {this.context[0]['statistical']['revenue'][0]['day']}/>
